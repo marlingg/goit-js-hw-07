@@ -1,7 +1,5 @@
 import { galleryItems } from './gallery-items.js';
 
-const galleryList = document.querySelector('.gallery');
-
 function createGalleryItem(item) {
   const listItem = document.createElement('li');
   listItem.classList.add('gallery__item');
@@ -20,7 +18,14 @@ function createGalleryItem(item) {
   return listItem;
 }
 
-function openLightbox() {
+function initializeGallery() {
+  const galleryList = document.querySelector('.gallery');
+
+  galleryItems.forEach(item => {
+    const galleryItem = createGalleryItem(item);
+    galleryList.appendChild(galleryItem);
+  });
+
   const lightbox = new SimpleLightbox('.gallery a', {
     captions: true, 
     captionsData: 'alt', 
@@ -28,10 +33,4 @@ function openLightbox() {
     closeText: '×'
   });
 }
-
-galleryItems.forEach(item => {
-  const galleryItem = createGalleryItem(item);
-  galleryList.appendChild(galleryItem);
-});
-
-window.addEventListener('load', openLightbox);
+window.addEventListener('load', initializeGallery);
