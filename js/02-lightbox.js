@@ -21,16 +21,15 @@ function createGalleryItem(item) {
 function initializeGallery() {
   const galleryList = document.querySelector('.gallery');
 
-  galleryItems.forEach(item => {
-    const galleryItem = createGalleryItem(item);
-    galleryList.appendChild(galleryItem);
-  });
+  const galleryItemsElements = galleryItems.map(item => createGalleryItem(item));
+  galleryList.append(...galleryItemsElements);
 
   const lightbox = new SimpleLightbox('.gallery a', {
-    captions: true, 
-    captionsData: 'alt', 
+    captions: true,
+    captionsData: 'alt',
     captionDelay: 250,
     closeText: '×'
   });
 }
-window.addEventListener('load', initializeGallery);
+
+window.addEventListener('DOMContentLoaded', initializeGallery);

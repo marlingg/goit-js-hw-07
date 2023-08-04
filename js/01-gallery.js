@@ -32,9 +32,7 @@ function openModal(event) {
   instance.show();
 }
 
-galleryItems.forEach(item => {
-  const galleryItem = createGalleryItem(item);
-  galleryList.appendChild(galleryItem);
-});
+const galleryItemsElements = galleryItems.map(item => createGalleryItem(item));
+galleryList.append(...galleryItemsElements);
 
 galleryList.addEventListener('click', openModal);
